@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/organisms/Navbar'
+import Footer from './components/organisms/Footer';
 import './App.css'
 
 
@@ -15,7 +15,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <>
       <div className="App">
         <Navbar
           searchHandler={searchHandler}
@@ -29,7 +29,8 @@ function App() {
           <p className="mt-4">This is a dummy content area to show the Navbar in context.</p>
         </div>
       </div>
-    </Router>
+      <Footer />
+      </>
   );
 };
 
