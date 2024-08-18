@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useRef } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Navbar from './components/organisms/Navbar'
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const inputField = useRef<HTMLInputElement>(null);
+  const [savedItems, setSavedItems] = useState<string[]>(['Pizza', 'Burger', 'Salad']);
+
+  const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('Search query:', searchQuery);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="App">
+        <Navbar
+          searchHandler={searchHandler}
+          inputField={inputField}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          savedItems={savedItems}
+        />
+        <div className="container mx-auto mt-8">
+          <h1 className="text-2xl font-bold">Welcome to FlavorFlex</h1>
+          <p className="mt-4">This is a dummy content area to show the Navbar in context.</p>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </Router>
+  );
+};
 
-export default App
+export default App;
