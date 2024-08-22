@@ -1,8 +1,10 @@
 import React from 'react';
 import FryingPan from "../molecules/FryingPan";
+import Recipe from '../organisms/Recipe';
+import RecipeType from '../../types/RecipeType';
 
 interface HomeProps {
-  recipes: string[];
+  recipes: RecipeType[];
   loading: boolean;
   error: string | null;
 }
@@ -21,23 +23,7 @@ const Home: React.FC<HomeProps> = ({ recipes, loading, error }) => {
 
       {loading && <p>{error ? error : "loading...."}</p>}
 
-      {recipes.length > 0 && (
-        <div className="w-full text-center">
-          <p className="text-2xl font-semibold mb-4">
-            Found {recipes.length} recipe(s)
-          </p>
-          <p className="text-lg text-gray-600">
-            This is a placeholder for the recipe list. Each recipe would be displayed here.
-          </p>
-          <ul className="mt-4 list-disc list-inside">
-            {recipes.map((recipe, index) => (
-              <li key={index} className="text-lg text-gray-700">
-                Recipe {index + 1}: {recipe}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {recipes.length > 0 && recipes.map((recipe) => <Recipe recipe={recipe} key={recipe.recipe_id} />)}
     </div>
   );
 };
