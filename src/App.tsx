@@ -3,6 +3,8 @@ import Navbar from './components/organisms/Navbar'
 import Footer from './components/organisms/Footer';
 import Home from './components/templates/Home';
 import RecipePreview from './types/RecipePreview';
+import { Route, Routes } from 'react-router-dom';
+import RecipePage from './components/organisms/RecipePage';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -56,11 +58,16 @@ function App() {
         savedItems={savedItems}
       />
       <main className="flex-grow">
-        <Home
-          recipes={recipes}
-          loading={loading}
-          error={error}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home recipes={recipes} loading={loading} error={error} />}
+          />
+          <Route
+            path="/recipe-item/:id"
+            element={<RecipePage/>}
+          />
+        </Routes>
       </main>
       <Footer />
     </div>

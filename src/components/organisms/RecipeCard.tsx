@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import RecipePreview from "../../types/RecipePreview";
 
 interface RecipeCardProps {
@@ -21,9 +22,12 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
         <h2 className="title text-2xl font-semibold truncate">
           {recipe.title}
         </h2>
-        <p className="bg-gradient-to-br from-rose-400 to-red-600 text-rose-50 p-3 px-5 rounded-lg text-sm uppercase font-semibold tracking-wider mt-2 inline-block shadow-md shadow-red-200 hover:shadow-lg hover:shadow-red-300 duration-300">
+        <Link
+          to={`/recipe-item/${recipe.id}`}
+          className="bg-gradient-to-br from-rose-400 to-red-600 text-rose-50 p-3 px-5 rounded-lg text-sm uppercase font-semibold tracking-wider mt-2 inline-block shadow-md shadow-red-200 hover:shadow-lg hover:shadow-red-300 duration-300"
+        >
           view recipe
-        </p>
+        </Link>
       </div>
     </div>
   );
