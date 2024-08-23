@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({ recipes, loading, error }) => {
 
       {loading && <p>{error ? error : "loading...."}</p>}
 
-      {recipes.length > 0 && recipes.map((recipe) => <Recipe recipe={recipe} key={recipe.recipe_id} />)}
+      {recipes.length > 0 && recipes.map((recipe) => <Recipe recipe={recipe} key={recipe.id} />)}
     </div>
   );
 };
