@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
+import RecipeData from "../types/RecipeData";
 
-export const useRecipe = (id: number) => {
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+interface UseRecipeOutput {
+  data: RecipeData | null;
+  loading: boolean;
+  error: string;
+}
+
+export const useRecipe = (id: string): UseRecipeOutput => {
+  const [data, setData] = useState<RecipeData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const getRecipeItemData = async () => {
@@ -11,7 +18,7 @@ export const useRecipe = (id: number) => {
         const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
 
         if (!res.ok) {
-            throw new Error("Something went wrong, please try again later!");
+          throw new Error("Something went wrong, please try again later!");
         }
 
         const data = await res.json();
@@ -21,7 +28,7 @@ export const useRecipe = (id: number) => {
         setError(err.message);
       }
     };
-    
+
     getRecipeItemData();
   }, []);
 
