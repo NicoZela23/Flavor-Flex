@@ -3,7 +3,7 @@ import { useRecipe } from "../../hooks/useRecipe";
 import RecipeData from "../../types/RecipeData";
 import Ingredient from "../../types/Ingredient";
 
-const RecipeDetails = () => {
+const RecipePage = () => {
   const { id } = useParams() as { id: string };
 
   const { data: recipe } = useRecipe(id) as { data: RecipeData };
@@ -82,4 +82,4 @@ const RecipeDetails = () => {
   );
 };
 
-export default RecipeDetails;
+export default RecipePage;

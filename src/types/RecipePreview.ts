@@ -1,8 +1,8 @@
-interface RecipeType {
+interface RecipePreview {
     publisher: string;
     image_url: string;
     title: string;
     id: string;
 }
 
-export default RecipeType;
+export default RecipePreview;

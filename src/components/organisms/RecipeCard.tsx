@@ -1,10 +1,10 @@
-import RecipeType from "../../types/RecipeType";
+import RecipePreview from "../../types/RecipePreview";
 
-interface RecipeProps {
-  recipe: RecipeType
+interface RecipeCardProps {
+  recipe: RecipePreview
 }
 
-const Recipe: React.FC<RecipeProps> = ({ recipe }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   return (
     <div className="recipe w-80 overflow-hidden bg-white/75 rounded-2xl p-5 shadow-xl shadow-red-100 border-2 border-white flex flex-col gap-5">
       <div className="img h-40 overflow-hidden flex justify-center items-center rounded-lg">
@@ -29,4 +29,4 @@ const Recipe: React.FC<RecipeProps> = ({ recipe }) => {
   );
 };
 
-export default Recipe;
+export default RecipeCard;

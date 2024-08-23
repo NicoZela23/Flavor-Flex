@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Navbar from './components/organisms/Navbar'
 import Footer from './components/organisms/Footer';
 import Home from './components/templates/Home';
-import RecipeType from './types/RecipeType';
+import RecipePreview from './types/RecipePreview';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -10,7 +10,7 @@ function App() {
   const [savedItems] = useState<string[]>(['Pizza', 'Burger', 'Salad']);
   
   // New state for recipes, loading, and error
-  const [recipes, setRecipes] = useState<RecipeType[]>([]);
+  const [recipes, setRecipes] = useState<RecipePreview[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 

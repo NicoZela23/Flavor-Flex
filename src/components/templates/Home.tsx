@@ -1,10 +1,10 @@
 import React from 'react';
 import FryingPan from "../molecules/FryingPan";
-import Recipe from '../organisms/Recipe';
-import RecipeType from '../../types/RecipeType';
+import RecipeCard from '../organisms/RecipeCard';
+import RecipePreview from '../../types/RecipePreview';
 
 interface HomeProps {
-  recipes: RecipeType[];
+  recipes: RecipePreview[];
   loading: boolean;
   error: string | null;
 }
@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({ recipes, loading, error }) => {
 
       {loading && <p>{error ? error : "loading...."}</p>}
 
-      {recipes.length > 0 && recipes.map((recipe) => <Recipe recipe={recipe} key={recipe.id} />)}
+      {recipes.length > 0 && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)}
     </div>
   );
 };
