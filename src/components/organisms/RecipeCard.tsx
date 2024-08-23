@@ -1,10 +1,11 @@
-import RecipeType from "../../types/RecipeType";
+import { Link } from "react-router-dom";
+import RecipePreview from "../../types/RecipePreview";
 
-interface RecipeProps {
-  recipe: RecipeType
+interface RecipeCardProps {
+  recipe: RecipePreview
 }
 
-const Recipe: React.FC<RecipeProps> = ({ recipe }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   return (
     <div className="recipe w-80 overflow-hidden bg-white/75 rounded-2xl p-5 shadow-xl shadow-red-100 border-2 border-white flex flex-col gap-5">
       <div className="img h-40 overflow-hidden flex justify-center items-center rounded-lg">
@@ -21,12 +22,15 @@ const Recipe: React.FC<RecipeProps> = ({ recipe }) => {
         <h2 className="title text-2xl font-semibold truncate">
           {recipe.title}
         </h2>
-        <p className="bg-gradient-to-br from-rose-400 to-red-600 text-rose-50 p-3 px-5 rounded-lg text-sm uppercase font-semibold tracking-wider mt-2 inline-block shadow-md shadow-red-200 hover:shadow-lg hover:shadow-red-300 duration-300">
+        <Link
+          to={`/recipe-item/${recipe.id}`}
+          className="bg-gradient-to-br from-rose-400 to-red-600 text-rose-50 p-3 px-5 rounded-lg text-sm uppercase font-semibold tracking-wider mt-2 inline-block shadow-md shadow-red-200 hover:shadow-lg hover:shadow-red-300 duration-300"
+        >
           view recipe
-        </p>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default Recipe;
+export default RecipeCard;
