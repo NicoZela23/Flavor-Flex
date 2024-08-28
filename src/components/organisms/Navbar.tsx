@@ -7,7 +7,7 @@ interface NavbarProps {
   inputField: RefObject<HTMLInputElement>;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  savedItems: any[];
+  savedRecipes: any[];
 }
 
 const Navbar = ({
@@ -15,7 +15,7 @@ const Navbar = ({
     inputField,
     searchQuery,
     setSearchQuery,
-    savedItems,
+    savedRecipes,
   }: NavbarProps) => {
     const navActive = ({ isActive }: { isActive: boolean }) => {
       return {
@@ -66,7 +66,7 @@ const Navbar = ({
       >
         Favourites
         <span className="favourites-count font-bold text-sky-400">
-          ({savedItems.length})
+          ({savedRecipes.length})
         </span>
       </NavLink>
     </li>
