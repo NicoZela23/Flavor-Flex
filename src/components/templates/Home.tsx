@@ -1,10 +1,10 @@
 import React from 'react';
 import FryingPan from "../molecules/FryingPan";
 import RecipeCard from '../organisms/RecipeCard';
-import RecipePreview from '../../types/RecipePreview';
+import RecipeCardType from '../../types/RecipeCardType';
 
 interface HomeProps {
-  recipes: RecipePreview[];
+  recipes: RecipeCardType[];
   loading: boolean;
   error: string | null;
 }

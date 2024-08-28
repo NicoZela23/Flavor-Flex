@@ -1,12 +1,20 @@
 import { Link, useParams } from "react-router-dom";
 import { useRecipe } from "../../hooks/useRecipe";
-import RecipeData from "../../types/RecipeData";
+import RecipePageType from "../../types/RecipePageType";
 import Ingredient from "../../types/Ingredient";
+import { useEffect, useState } from "react";
+import RecipeCardType from "../../types/RecipeCardType";
 
-const RecipePage = () => {
+interface RecipePageProps {
+  favouriteHandler: (id: string) => void;
+  savedRecipes: RecipeCardType[];
+}
+
+const RecipePage: React.FC<RecipePageProps> = ({ favouriteHandler, savedRecipes }) => {
+  const [recipeSavedStatus, setRecipeSavedStatus] = useState<boolean | null>(null);
   const { id } = useParams() as { id: string };
 
-  const { data: recipe } = useRecipe(id) as { data: RecipeData };
+  const { data: recipe } = useRecipe(id) as { data: RecipePageType };
 
   const durationCalc = (duration: number) => {
     if (!duration) return;
@@ -22,6 +30,12 @@ const RecipePage = () => {
       return duration + "h";
     }
   };
+
+  useEffect(() => {
+    if (!recipe) return;
+
+    setRecipeSavedStatus(savedRecipes.some((item) => item.id === recipe.id));
+  }, [recipe]);
 
   return (
     <div className="recipe-item-section container mx-auto py-20 grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -62,6 +76,18 @@ const RecipePage = () => {
           </div>
         </div>
         <div className="btns flex gap-5">
+          <button
+            onClick={() => favouriteHandler(recipe?.id)}
+            className={`bg-gradient-to-br p-3 px-8 rounded-lg text-xs uppercase font-medium tracking-wider mt-2 inline-block shadow-md hover:shadow-lg  duration-300 ${
+              recipeSavedStatus
+                ? "from-orange-400 to-orange-600 text-orange-50 shadow-orange-200 hover:shadow-orange-300"
+                : "from-sky-400 to-sky-600 text-sky-50 shadow-sky-200 hover:shadow-sky-300"
+            }`}
+          >
+            {recipeSavedStatus
+              ? "- Remove from favourites"
+              : "+ Save as favourite"}
+          </button>
           <a
             href={recipe?.source_url}
             target="_blank"
