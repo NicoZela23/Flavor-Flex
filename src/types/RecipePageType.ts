@@ -1,6 +1,6 @@
 import Ingredient from "./Ingredient";
 
-interface RecipeData {
+interface RecipePageType {
   publisher: string;
   ingredients: Ingredient[];
   source_url: string; 
@@ -11,4 +11,4 @@ interface RecipeData {
   id: string;
 }
 
-export default RecipeData
+export default RecipePageType;

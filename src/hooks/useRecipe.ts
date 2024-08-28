@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import RecipeData from "../types/RecipeData";
+import RecipePageType from "../types/RecipePageType";
 
 interface UseRecipeOutput {
-  data: RecipeData | null;
+  data: RecipePageType | null;
   loading: boolean;
   error: string;
 }
 
 export const useRecipe = (id: string): UseRecipeOutput => {
-  const [data, setData] = useState<RecipeData | null>(null);
+  const [data, setData] = useState<RecipePageType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 

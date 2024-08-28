@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { useRecipe } from "../../hooks/useRecipe";
-import RecipeData from "../../types/RecipeData";
+import RecipePageType from "../../types/RecipePageType";
 import Ingredient from "../../types/Ingredient";
 
 const RecipePage = () => {
   const { id } = useParams() as { id: string };
 
-  const { data: recipe } = useRecipe(id) as { data: RecipeData };
+  const { data: recipe } = useRecipe(id) as { data: RecipePageType };
 
   const durationCalc = (duration: number) => {
     if (!duration) return;

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Navbar from './components/organisms/Navbar'
 import Footer from './components/organisms/Footer';
 import Home from './components/templates/Home';
-import RecipePreview from './types/RecipePreview';
+import RecipeCardType from './types/RecipeCardType';
 import { Route, Routes } from 'react-router-dom';
 import RecipePage from './components/organisms/RecipePage';
 
@@ -12,7 +12,7 @@ function App() {
   const [savedItems] = useState<string[]>(['Pizza', 'Burger', 'Salad']);
   
   // New state for recipes, loading, and error
-  const [recipes, setRecipes] = useState<RecipePreview[]>([]);
+  const [recipes, setRecipes] = useState<RecipeCardType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
