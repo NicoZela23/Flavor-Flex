@@ -1,20 +1,28 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './components/organisms/Navbar'
 import Footer from './components/organisms/Footer';
 import Home from './components/templates/Home';
 import RecipeCardType from './types/RecipeCardType';
 import { Route, Routes } from 'react-router-dom';
 import RecipePage from './components/organisms/RecipePage';
+import Favourites from './components/organisms/Favorites';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const inputField = useRef<HTMLInputElement>(null);
-  const [savedItems] = useState<string[]>(['Pizza', 'Burger', 'Salad']);
+  const [savedRecipes, setSavedRecipes] = useState(() => {
+    const localData = localStorage.getItem("recipes");
+    return localData ? JSON.parse(localData) : [];
+  });
   
   // New state for recipes, loading, and error
   const [recipes, setRecipes] = useState<RecipeCardType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    localStorage.setItem("recipes", JSON.stringify(savedRecipes));
+  }, [savedRecipes]);
 
   const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -55,13 +63,17 @@ function App() {
         inputField={inputField}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        savedItems={savedItems}
+        savedRecipes={savedRecipes}
       />
       <main className="flex-grow">
         <Routes>
           <Route
             path="/"
             element={<Home recipes={recipes} loading={loading} error={error} />}
+          />
+          <Route
+            path="/favourites"
+            element={<Favourites savedRecipes={savedRecipes} />}
           />
           <Route
             path="/recipe-item/:id"
