@@ -38,35 +38,35 @@ const RecipePage: React.FC<RecipePageProps> = ({ favouriteHandler, savedRecipes 
   }, [recipe]);
 
   return (
-    <div className="recipe-item-section container mx-auto py-20 grid grid-cols-1 lg:grid-cols-2 gap-10">
-      <div className="left row-start-2 lg:row-start-auto">
-        <div className="img overflow-hidden rounded-xl border shadow-md group">
+    <div className="recipe-item-section container mx-auto py-10 px-5 md:py-20 md:px-10 max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-0">
+      <div className="left row-start-2 lg:row-start-auto flex flex-col items-center lg:items-start max-w-lg">
+        <div className="img overflow-hidden rounded-xl border shadow-md group w-full">
           <img
             src={recipe?.image_url}
             alt={recipe?.title}
-            className="h-full w-full object-cover group-hover:scale-105 duration-300"
+            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
-        <div className="ings mt-10">
-          <span className="ing-title text-3xl font-medium mb-5 inline-block">
-            Ingredients:
+        <div className="ings mt-8 md:mt-10 w-full p-5 bg-rose-100 rounded-lg shadow-md">
+          <span className="ing-title text-2xl md:text-3xl font-semibold mb-4 block">
+            Ingredients
           </span>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-2 text-sm md:text-base list-disc pl-5">
             {recipe?.ingredients?.map((ing: Ingredient, i) => (
               <li key={i}>
-                ✓ {ing.quantity}
-                {ing.unit} {ing.description}
+                <span className="font-medium">{ing.quantity} {ing.unit}</span> {ing.description}
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <div className="right flex flex-col gap-5">
-        <span className="publisher uppercase tracking-widest font-semibold text-sky-400">
+      
+      <div className="right flex flex-col gap-5 items-center lg:items-start text-center lg:text-left">
+        <span className="publisher uppercase tracking-widest font-semibold text-sky-400 text-sm md:text-base">
           {recipe?.publisher}
         </span>
-        <h2 className="title text-5xl">{recipe?.title}</h2>
-        <div className="servings-cooking-time flex gap-5 uppercase tracking-widest font-semibold text-rose-500">
+        <h2 className="title text-3xl md:text-5xl font-semibold">{recipe?.title}</h2>
+        <div className="servings-cooking-time flex flex-col md:flex-row gap-3 md:gap-5 uppercase tracking-widest font-semibold text-rose-500 text-sm md:text-base">
           <div className="servings">Servings: {recipe?.servings} people</div>
           <div className="cooking-time">
             Cooking time:{" "}
@@ -75,10 +75,10 @@ const RecipePage: React.FC<RecipePageProps> = ({ favouriteHandler, savedRecipes 
               : durationCalc(recipe?.cooking_time / 60)}
           </div>
         </div>
-        <div className="btns flex gap-5">
+        <div className="btns flex flex-wrap justify-center lg:justify-start gap-3 md:gap-5 mt-5">
           <button
             onClick={() => favouriteHandler(recipe?.id)}
-            className={`bg-gradient-to-br p-3 px-8 rounded-lg text-xs uppercase font-medium tracking-wider mt-2 inline-block shadow-md hover:shadow-lg  duration-300 ${
+            className={`bg-gradient-to-br p-3 px-6 rounded-lg text-xs md:text-sm uppercase font-medium tracking-wider inline-block shadow-md hover:shadow-lg transition-shadow duration-300 ${
               recipeSavedStatus
                 ? "from-orange-400 to-orange-600 text-orange-50 shadow-orange-200 hover:shadow-orange-300"
                 : "from-sky-400 to-sky-600 text-sky-50 shadow-sky-200 hover:shadow-sky-300"
@@ -92,13 +92,13 @@ const RecipePage: React.FC<RecipePageProps> = ({ favouriteHandler, savedRecipes 
             href={recipe?.source_url}
             target="_blank"
             rel="noreferrer"
-            className="bg-gradient-to-br from-purple-400 to-purple-600 text-purple-50 p-3 px-8 rounded-lg text-xs uppercase font-medium tracking-wider mt-2 inline-block shadow-md shadow-purple-200 hover:shadow-lg hover:shadow-purple-300 duration-300"
+            className="bg-gradient-to-br from-purple-400 to-purple-600 text-purple-50 hover:shadow-purple-300 p-3 px-6 rounded-lg text-xs md:text-sm uppercase font-medium tracking-wider inline-block shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             Get directions
           </a>
           <Link
             to="/"
-            className="bg-gradient-to-br from-rose-400 to-rose-600 text-rose-50 p-3 px-8 rounded-lg text-xs uppercase font-medium tracking-wider mt-2 inline-block shadow-md shadow-rose-200 hover:shadow-lg hover:shadow-rose-300 duration-300"
+            className="bg-gradient-to-br from-rose-400 to-rose-600 text-rose-50 hover:shadow-rose-300 p-3 px-6 rounded-lg text-xs md:text-sm uppercase font-medium tracking-wider inline-block shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             Back to home
           </Link>
