@@ -24,7 +24,7 @@ const Navbar = ({
     };
   
     return (
-      <div className="navbar flex flex-col sm:flex-row justify-between items-center container mx-auto py-4 px-4 gap-4 sm:gap-6">
+      <div className="navbar flex flex-col sm:flex-row justify-between items-center container mx-auto py-4 px-8 gap-4 sm:gap-6">
         <div className="flex items-center justify-center sm:justify-start w-full sm:w-auto">
           <div className="h-12 sm:h-16 md:h-20 flex items-center">
             <img 
@@ -53,7 +53,7 @@ const Navbar = ({
               style={navActive}
               end
               to="/"
-              className="text-gray-400 hover:text-gray-600 duration-300"
+              className="text-gray-400 hover:text-gray-600 duration-300 font-semibold text-lg md:text-xl"
             >
               Home
             </NavLink>
@@ -62,7 +62,7 @@ const Navbar = ({
             <NavLink
               style={navActive}
               to="/Favourites"
-              className="text-gray-400 hover:text-gray-600 duration-300"
+              className="text-gray-400 hover:text-gray-600 duration-300 font-semibold text-lg md:text-xl"
             >
               Favourites
               <span className="favourites-count font-bold text-sky-400 ml-1">
