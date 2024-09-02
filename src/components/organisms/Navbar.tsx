@@ -24,18 +24,16 @@ const Navbar = ({
     };
   
     return (
-      <div className="navbar flex flex-col sm:flex-row justify-between items-center container mx-auto py-4 px-8 gap-4 sm:gap-6">
-        <div className="flex items-center justify-center sm:justify-start w-full sm:w-auto">
-          <div className="h-12 sm:h-16 md:h-20 flex items-center">
-            <img 
-              src={FlavorFLexLogo} 
-              alt="FlavorFlex logo" 
-              className="h-8 sm:h-10 md:h-12 w-auto"
-            />
-          </div>
+      <div className="navbar flex flex-col sm:flex-row justify-between items-center p-4 md:px-8 lg:px-16 gap-3 sm:gap-6">
+        <div className="logo">
+          <img 
+            src={FlavorFLexLogo} 
+            alt="FlavorFlex logo" 
+            className="h-10 sm:h-12 md:h-14 w-auto mb-3 "
+          />
         </div>
         
-        <form className="search-bar w-full sm:w-2/4 max-w-lg" onSubmit={searchHandler}>
+        <form className="search-bar w-full sm:w-2/4" onSubmit={searchHandler}>
           <input
             ref={inputField}
             value={searchQuery}
