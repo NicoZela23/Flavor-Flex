@@ -82,6 +82,7 @@ function App() {
   };  
 
   return (
+    <>
     <div className="app min-h-screen bg-rose-50 text-gray-600 text-lg">
       <Navbar
         searchHandler={searchHandler}
@@ -90,7 +91,6 @@ function App() {
         setSearchQuery={setSearchQuery}
         savedRecipes={savedRecipes}
       />
-      <main className="flex-grow">
         <Routes>
           <Route
             path="/"
@@ -110,9 +110,9 @@ function App() {
             }
           />
         </Routes>
-      </main>
-      <Footer />
     </div>
+    <Footer />
+    </>
   );
 }
 
