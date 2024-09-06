@@ -92,30 +92,3 @@ const RecipePage: React.FC<RecipePageProps> = ({
               recipeSavedStatus
                 ? "from-orange-400 to-orange-600 text-orange-50 shadow-orange-200 hover:shadow-orange-300"
                 : "from-sky-400 to-sky-600 text-sky-50 shadow-sky-200 hover:shadow-sky-300"
-            }`}
-          >
-            {recipeSavedStatus
-              ? "- Remove from favourites"
-              : "+ Save as favourite"}
-          </button>
-          <a
-            href={recipe?.source_url}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gradient-to-br from-purple-400 to-purple-600 text-purple-50 hover:shadow-purple-300 p-3 px-6 rounded-lg text-xs md:text-sm uppercase font-medium tracking-wider inline-block shadow-md hover:shadow-lg transition-shadow duration-300"
-          >
-            Get directions
-          </a>
-          <Link
-            to="/"
-            className="bg-gradient-to-br from-rose-400 to-rose-600 text-rose-50 hover:shadow-rose-300 p-3 px-6 rounded-lg text-xs md:text-sm uppercase font-medium tracking-wider inline-block shadow-md hover:shadow-lg transition-shadow duration-300"
-          >
-            Back to home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default RecipePage;
