@@ -1,50 +1,117 @@
-# React + TypeScript + Vite
+# Flavor-Flex 🍳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A recipe discovery app built to practice React, TypeScript, REST API integration, and deployment with Vercel. Users can search recipes, view details, and save favorites — all persisted in localStorage.
 
-Currently, two official plugins are available:
+## What I Practiced
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 18 with hooks (`useState`, `useEffect`, custom hooks)
+- TypeScript interfaces and type safety across components
+- React Router v6 for client-side navigation
+- Fetching and handling data from a third-party REST API
+- Tailwind CSS for responsive, utility-first styling
+- CI/CD pipeline with GitHub Actions deploying to Vercel
 
-## Expanding the ESLint configuration
+## Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Deployed on Vercel — check the deployments tab or the URL pinned in the repo.
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+| Layer | Technology |
+|-------|-----------|
+| UI | React 18 + TypeScript |
+| Routing | React Router v6 |
+| Styling | Tailwind CSS |
+| Build | Vite 5 |
+| Testing | Jest + React Testing Library |
+| Linting | ESLint + typescript-eslint |
+| Deployment | Vercel via GitHub Actions |
+
+## API
+
+Uses the **Forkify API** (`https://forkify-api.herokuapp.com/api/v2`) — no authentication required.
+
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /recipes?search={query}` | Search recipes by name |
+| `GET /recipes/{id}` | Fetch full recipe details |
+
+## Features
+
+- Search recipes by name
+- Browse results in a responsive card grid
+- View full recipe: ingredients, servings, cooking time, link to directions
+- Save/unsave favorites — persisted in `localStorage`
+- Animated frying pan on empty states
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── molecules/       # Small reusable UI pieces (FryingPan animation)
+│   ├── organisms/       # Feature components (Navbar, RecipeCard, RecipePage, Favorites, Footer)
+│   └── templates/       # Page layouts (Home)
+├── hooks/
+│   └── useRecipe.ts     # Custom hook — fetches single recipe by ID
+├── types/               # TypeScript interfaces (RecipeCardType, RecipePageType, Ingredient)
+├── App.tsx              # Router setup
+└── main.tsx             # Entry point
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Routes
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+| Path | Page |
+|------|------|
+| `/` | Home — search results |
+| `/favourites` | Saved recipes |
+| `/recipe-item/:id` | Recipe detail |
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server with HMR
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+## Deployment
+
+CI/CD via GitHub Actions + Vercel:
+
+- **Push to `main`** → production deployment
+- **Push to any other branch** → preview deployment
+
+Required GitHub secrets:
+
+```
+VERCEL_TOKEN
+VERCEL_ORG_ID
+VERCEL_PROJECT_ID
+```
+
+To deploy manually with the Vercel CLI:
+
+```bash
+npm i -g vercel
+vercel        # preview
+vercel --prod # production
+```
+
+## Scripts
+
+```bash
+npm run dev        # Dev server
+npm run build      # tsc + vite build
+npm run preview    # Preview build
+npm run lint       # ESLint
+npm test           # Jest tests
 ```
